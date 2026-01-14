@@ -1,4 +1,5 @@
 const BookingHeader = ({ doctor, timeText, clinic }) => {
+  console.log(timeText)
   return (
     <div className="booking-header">
       <img src={doctor.avatar} alt="doctor" className="doctor-avatar" />

@@ -1,11 +1,15 @@
 
 'use strict';
 
-import { BOOLEAN, Sequelize, STRING } from "sequelize";
+import { BOOLEAN, DataTypes, Sequelize, STRING } from "sequelize";
 
 export default{
   async up(queryInterface,sequelize){
     await queryInterface.createTable("payments",{
+        booking_id:{
+          type: Sequelize.BIGINT,
+          primaryKey: true
+        },
         amount:{
           type: Sequelize.BIGINT
         },
@@ -15,7 +19,7 @@ export default{
         status:{
           type:STRING
         },
-        bookings_id:{
+        booking_id:{
           type: Sequelize.BIGINT,
           allowNull: true,
           references:{
@@ -24,6 +28,12 @@ export default{
           },
           onUpdate:"CASCADE",
           onDelete:"SET NULL"
+        },
+        createdAt:{
+          type: Sequelize.DATE
+        },
+        updatedAt:{
+          type: Sequelize.DATE
         }
         
         

@@ -5,6 +5,8 @@ const saveBookingData = async(data)=>{
     //dùng transaction khi dữ liệu cần nhất quán
     // (khi thành công hết thì mới tạo không thì rollback)
     const t = await db.sequelize.transaction()
+    const isTimeSlotAvailable = await checkAndMarkTimeSlotUnavailable(data.time_slot_id)
+    if(!isTimeSlotAvailable) return "Not Available"
     try {
         //tạo patient mới
         const newPatient = await db.Patient.create({
@@ -39,4 +41,15 @@ const saveBookingData = async(data)=>{
     }
 }
 
+const checkAndMarkTimeSlotUnavailable = async(timeSlotId)=>{
+    const timeSlot = await db.TimeSlot.findOne({
+        where: {id: timeSlotId}
+    })
+    if(timeSlot.is_available){
+        timeSlot.is_available = false
+        await timeSlot.save()
+        return true
+    }
+    else false
+}
 module.exports = {saveBookingData}

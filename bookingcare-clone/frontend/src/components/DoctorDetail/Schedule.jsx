@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { formatTime } from "../../services/doctorService";
 import "./Schedule.scss"
-const Schedule = ({scheduleDate,timeSlots,doctorId})=>{
+const Schedule = ({scheduleDate,timeSlots,doctorId,schedule_id})=>{
     const [selectedSlot,setSelectedSlot] = useState(null)
-    
+    const navigate = useNavigate()
+
+    const handleClick = (slotId) =>{
+        navigate(`/booking/${doctorId}?slotId=${slotId}&scheduleId=${schedule_id}`)
+    }
     return (
     <div className="doctor-schedule">
       {/* DATE */}
@@ -17,20 +22,20 @@ const Schedule = ({scheduleDate,timeSlots,doctorId})=>{
       </div>
 
       {/* TIME SLOTS */}
-      <a className="time-slots" href={`booking/${doctorId}`}>
+      
         {timeSlots.map((slot) => (
           <button
             key={slot.id}
             className={`time-slot ${
               selectedSlot?.id === slot.id ? "active" : ""
             }`}
-            onClick={() => setSelectedSlot(slot)}
+            //lấy slotId để truyền vào trang Booking sau đó sẽ lưu vào database
+            onClick={()=>{handleClick(slot.id)}}
             disabled={!slot.is_available}
           >
             {formatTime(slot.start_time)} - {formatTime(slot.end_time)}
           </button>
         ))}
-      </a>
 
       {/* NOTE */}
       <div className="schedule-note">

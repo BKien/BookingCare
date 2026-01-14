@@ -7,4 +7,13 @@ const fetchDoctorBookingInfo = async(id)=>{
     return doctorBookingInfo
 }
 
-export default fetchDoctorBookingInfo
+const sendBookingDataToServer = async(data)=>{
+    console.log(data)
+    await axios.post(`${API_URL}/api/bookings/saveBookingData`,data)
+}
+
+export default {
+    fetchDoctorBookingInfo,
+    sendBookingDataToServer
+}
+

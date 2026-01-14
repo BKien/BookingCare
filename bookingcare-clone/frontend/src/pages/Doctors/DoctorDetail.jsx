@@ -33,6 +33,8 @@ const DoctorDetail = () => {
             timeSlots={doctorData.data.time_slots}
             //truyền doctorId vào để trang Booking fetch data tổng hợp lại lần nữa
             doctorId={doctorData.data.doctor_info.id}
+            //truyền schedule_id vào để lưu dữ liệu của trang Booking vào Database
+            schedule_id={doctorData.data.schedule.id}
         ></Schedule>
     </>)
 }
