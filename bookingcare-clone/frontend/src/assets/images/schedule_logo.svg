@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="180" height="160" viewBox="0 0 180 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .primary { stroke: #3CC6D8; fill: none; }
+      .text { fill: #3CC6D8; font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: 500; }
+    </style>
+  </defs>
+
+  <!-- Clock Icon -->
+  <g transform="translate(60, 20)">
+    <circle cx="30" cy="30" r="24" class="primary" stroke-width="5"/>
+    <path d="M30 6 A24 24 0 0 1 54 30" class="primary" stroke-width="5" stroke-linecap="round"/>
+    <line x1="30" y1="30" x2="30" y2="18" class="primary" stroke-width="4" stroke-linecap="round"/>
+    <line x1="30" y1="30" x2="42" y2="30" class="primary" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Text -->
+  <text x="90" y="130" text-anchor="middle" class="text">Lịch hẹn</text>
+</svg>

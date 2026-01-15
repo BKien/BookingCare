@@ -1,0 +1,68 @@
+
+.header-container{
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+.header-container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .left-side{
+        display: flex;
+        align-items: center;
+        gap: 13px;
+
+        .menu-logo{
+            width: 35px;
+        }
+
+        .bookingcare-logo{
+            width: 170px;
+        }
+
+    }
+
+    .center{
+        display: flex;
+        gap: 19px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        .nav-item{
+            text-decoration: none;
+            color: rgb(36, 35, 35)
+        }
+    }
+
+    .right-side{
+        display: flex;
+        gap: 13px;
+        justify-content: center;
+        align-items: center;
+        .shedule-logo{
+            width: 70px;
+        }
+
+        .login-button{
+            padding: 10px 15px 10px 15px;
+            border-radius: 7px;
+            background-color: rgb(230, 181, 89);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border: none;
+
+            &:hover{
+                cursor: pointer;
+                background-color: rgb(234, 201, 140);
+            }
+        }
+    }
+}
+
