@@ -1,9 +1,7 @@
-
+import FeaturedSection from "../../../components/FeaturedSection/FeaturedSection"
 const DoctorSection = ()=>{
     return(
-        <>
-            DoctorSection
-        </>
+        <FeaturedSection></FeaturedSection>
     )
 }
 
