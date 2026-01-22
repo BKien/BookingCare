@@ -18,6 +18,10 @@ export default{
         description:{
           type: Sequelize.TEXT,
           allowNull: false
+        },
+        img:{
+          type: Sequelize.TEXT,
+          allowNull: false
         }
         
      })

@@ -1,12 +1,13 @@
 import Header from "./Header"
 import List from "./List"
 import "./FeaturedSection.scss"
-const FeaturedSection = ({data})=>{
+const FeaturedSection = ({data,nameOfSection,learnMoreLink})=>{
 
+    
     return(
         <div className="featured-container">
-            <Header nameOfSection={"Noi Bat"} learnMoreLink={"/"}></Header>
-            <List list={[]}></List>
+            <Header nameOfSection={nameOfSection} learnMoreLink={learnMoreLink}></Header>
+            <List list={data}></List>
         </div>
     )
 }

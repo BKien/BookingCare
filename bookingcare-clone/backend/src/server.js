@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 const {connectDatabase} = require('./config/database.js')
 const db = require('./models/index.js');
 const routes = require('./routes')
@@ -9,6 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//middleware cho phép phía frontend truy cập vào folder public
+app.use('/public',express.static(path.join(__dirname,"..","public")))
+
 
 app.use('/api',routes)
 
