@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     description: DataTypes.STRING,
-    price: DataTypes.INTEGER
+    price: DataTypes.INTEGER,
+    img: DataTypes.TEXT
   },
   {
     sequelize,

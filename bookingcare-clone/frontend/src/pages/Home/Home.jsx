@@ -1,6 +1,6 @@
 import React from "react";
 import { useState ,useEffect} from "react";
-import DoctorSection from "./components/DoctorSection";
+import DoctorSection from "./components/DoctorSection/DoctorSection";
 import MedicalFacility from "./components/MedicalFacility";
 import ServiceSection from "./components/ServiceSection";
 import SpecialistSection from "./components/SpecialistSection";
@@ -11,7 +11,7 @@ import homePageSevice from "../../services/homePageSevice";
 const Home = () => {
     const [dataForSpecialistSection,setDataForSpecialistSection] = useState([])
     const [dataForMedicalFacilitySection,setDataForMedicalFacilitySection] = useState([])
-
+    const [dataForDoctorSection,setDataForDoctorSection] = useState([])
     useEffect(()=>{
         const getHomePageData = async()=>{
             try {
@@ -19,6 +19,7 @@ const Home = () => {
                 const homePageData = await homePageSevice.getHomePageData()
                 setDataForSpecialistSection(homePageData.specialties)
                 setDataForMedicalFacilitySection(homePageData.clinics)
+                setDataForDoctorSection(homePageData.doctorFeatured)
             } catch (error) {
                 console.log(error)
             }
@@ -34,7 +35,7 @@ const Home = () => {
             <ServiceSection></ServiceSection>
             <SpecialistSection data={dataForSpecialistSection}></SpecialistSection>
             <MedicalFacility data={dataForMedicalFacilitySection}></MedicalFacility>
-            <DoctorSection list={dataForMedicalFacilitySection}></DoctorSection>
+            <DoctorSection list={dataForDoctorSection}></DoctorSection>
             <Footer></Footer>
         </>
     )

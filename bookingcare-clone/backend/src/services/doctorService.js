@@ -37,11 +37,13 @@ const getAllInfo = async(id)=>{
         let doctor_info = await db.Doctor.findOne({
         where: {id:id}
         })
+        
         doctor_info = doctor_info.dataValues
 
         let schedule = await db.Schedule.findOne({
             where: {doctor_id:id}
         })
+        
         schedule = schedule.dataValues
         
         let time_slots = await db.TimeSlot.findAll({
