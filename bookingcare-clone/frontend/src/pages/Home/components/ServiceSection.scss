@@ -1,0 +1,33 @@
+.services-section-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 80px;
+    .name-of-section{
+        font-size: 30px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    .services-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        
+        .service {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: inherit;
+            padding: 20px 24px;
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid #eee;
+            .img {
+                width: 48px;
+                height: 48px;
+                object-fit: contain;
+            }
+        }
+    }
+}

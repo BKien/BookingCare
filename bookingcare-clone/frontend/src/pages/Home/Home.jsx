@@ -12,6 +12,7 @@ const Home = () => {
     const [dataForSpecialistSection,setDataForSpecialistSection] = useState([])
     const [dataForMedicalFacilitySection,setDataForMedicalFacilitySection] = useState([])
     const [dataForDoctorSection,setDataForDoctorSection] = useState([])
+    const [dataForServicesSection,setDataForServicesSection] = useState([])
     useEffect(()=>{
         const getHomePageData = async()=>{
             try {
@@ -20,6 +21,7 @@ const Home = () => {
                 setDataForSpecialistSection(homePageData.specialties)
                 setDataForMedicalFacilitySection(homePageData.clinics)
                 setDataForDoctorSection(homePageData.doctorFeatured)
+                setDataForServicesSection(homePageData.services)
             } catch (error) {
                 console.log(error)
             }
@@ -32,7 +34,7 @@ const Home = () => {
         <>
             <Header></Header>
             <SearchSection></SearchSection>
-            <ServiceSection></ServiceSection>
+            <ServiceSection listOfServices={dataForServicesSection}></ServiceSection>
             <SpecialistSection data={dataForSpecialistSection}></SpecialistSection>
             <MedicalFacility data={dataForMedicalFacilitySection}></MedicalFacility>
             <DoctorSection list={dataForDoctorSection}></DoctorSection>
