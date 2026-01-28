@@ -1,0 +1,147 @@
+.login-page {
+  min-height: 100vh;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 1100px;
+  height: 650px;
+  background: #f8fafc;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  overflow: hidden;
+}
+
+/* LEFT */
+.login-left {
+  padding: 48px;
+  background: #fff;
+
+  .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2563eb;
+
+    span {
+      color: #111;
+      margin-left: 4px;
+    }
+  }
+
+  h2 {
+    margin-top: 32px;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    margin-bottom: 24px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    label {
+      font-size: 14px;
+      color: #374151;
+    }
+
+    input {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      outline: none;
+
+      &:focus {
+        border-color: #2563eb;
+      }
+    }
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+  }
+
+  .btn-primary {
+    margin-top: 12px;
+    padding: 12px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .divider {
+    text-align: center;
+    margin: 16px 0;
+    color: #9ca3af;
+  }
+
+  .social-login {
+    display: flex;
+    gap: 12px;
+
+    .btn-outline {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      cursor: pointer;
+    }
+  }
+
+  .signup {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 16px;
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  }
+}
+
+/* RIGHT */
+.login-right {
+  background: #3b82f6;
+  color: #fff;
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin: 12px 0;
+
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    opacity: 0.85;
+    max-width: 400px;
+  }
+}

@@ -8,7 +8,7 @@ const medicalServicesRouter = require('./medicalServices')
 
 
 router.use('',homeRouter)
-router.use('/users',userRouter)
+router.use('/user',userRouter)
 router.use('/medical-services',medicalServicesRouter)
 router.use('/bookings',bookingRouter)
 
