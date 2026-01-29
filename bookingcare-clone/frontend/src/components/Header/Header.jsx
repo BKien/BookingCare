@@ -1,10 +1,35 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { NavLink ,Navigate, useNavigate} from "react-router-dom";
 import './Header.scss'
 import menuLogo from "../../assets/images/menu_icon.svg"
 import bookingCareLogo from "../../assets/images/bookingcarelogo.svg"
 import scheduleLogo from "../../assets/images/schedule_logo.svg"
+import { AuthContext } from "../../context/AuthContext";
+import DropDown from "../DropDown/DropDown.jsx";
 const Header = () => {
+  const {user} = useContext(AuthContext)
+  let [isOpen,setIsOpen] = useState(false)
+  const avatarRef = useRef(null)
+  const navigate = useNavigate()
+
+  const handleDropDownClick = ()=>{
+      isOpen = !isOpen
+      setIsOpen(isOpen)
+  }
+
+  useEffect(()=>{
+    const handleClickOutSide = (e)=>{
+        if(!avatarRef.current.contains(e.target))
+        setIsOpen(false)
+    }
+      
+      document.addEventListener("mousedown",handleClickOutSide)
+    return ()=>{
+      document.removeEventListener("mousedown",handleClickOutSide)
+    }
+
+  },[])
+
   return(
     <div className="header">
       <div className="header-container">
@@ -46,7 +71,19 @@ const Header = () => {
 
         <div className="right-side">
           <a href="/schedule"><img src={scheduleLogo} className="shedule-logo"></img></a>
-          <a href="/login"> <button className="login-button">Đăng nhập</button></a>  
+          {!user ? (
+              <button
+                className="login-button"
+                onClick={() => navigate("/login")}
+              >
+                Đăng nhập
+              </button>
+            ) : (
+              <div className="user-avatar" onClick={handleDropDownClick} ref={avatarRef}>
+                <img src={bookingCareLogo}></img>
+                <DropDown isOpen={isOpen}></DropDown>
+              </div>
+            )}
         </div>
     </div>
     </div>

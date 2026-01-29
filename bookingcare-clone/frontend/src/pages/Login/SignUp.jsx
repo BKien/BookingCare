@@ -20,10 +20,10 @@ const SignUp = () => {
         // TODO: validation
         // TODO: call API register
         console.log({
-        fullName,
-        email,
-        password,
-        confirmPassword,
+            fullName,
+            email,
+            password,
+            confirmPassword,
         });
     };
 

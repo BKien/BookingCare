@@ -1,21 +1,34 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import "./Login.scss";
-
+import { useNavigate } from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
 const Login = () => {
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState("")
-    
-    const handleSubmit = async()=>{
+    const API_URL = import.meta.env.VITE_API_URL
+    const navigate = useNavigate()
+    const {login} = useContext(AuthContext)
+
+    const handleSubmit = async(e)=>{
+        e.preventDefault()
         try {
-            const res = await axios.post("/api/auth",{
+            
+            const res = await axios.post(`${API_URL}/api/user/auth/login`,{
                 email,
                 password
             })
+            
             // lấy token
             // nếu thành công thì chuyển sang trang chủ
+            
+            const {accessToken,user} = res.data
+            localStorage.setItem("accessToken",accessToken)
+            login(user)
+            navigate('/')
+
         } catch (error) {
             setError(error)
         }
@@ -34,7 +47,7 @@ const Login = () => {
             Welcome back! Please enter your details
           </p>
 
-          {error && <p className="error">{error}</p>}
+          {error && <p className="error">{error?.message}</p>}
 
           <form onSubmit={handleSubmit}>
             <label>Email</label>
@@ -68,9 +81,8 @@ const Login = () => {
             <button
               type="submit"
               className="btn-primary"
-              disabled={loading}
             >
-              {loading ? "Signing in..." : "Sign in"}
+              Sign In
             </button>
           </form>
 

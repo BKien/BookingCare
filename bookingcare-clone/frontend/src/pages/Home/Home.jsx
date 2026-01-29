@@ -9,10 +9,12 @@ import Header from "../../components/Header/Header"
 import Footer from "../../components/Footer/Footer";
 import homePageSevice from "../../services/homePageSevice";
 const Home = () => {
+    
     const [dataForSpecialistSection,setDataForSpecialistSection] = useState([])
     const [dataForMedicalFacilitySection,setDataForMedicalFacilitySection] = useState([])
     const [dataForDoctorSection,setDataForDoctorSection] = useState([])
     const [dataForServicesSection,setDataForServicesSection] = useState([])
+    
     useEffect(()=>{
         const getHomePageData = async()=>{
             try {

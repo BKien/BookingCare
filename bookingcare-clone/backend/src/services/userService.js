@@ -30,14 +30,14 @@ const createAnAccount = async(data) =>{
 const login = async(data)=>{
     try {
         const user = await db.User.findOne({
-            email: data.email
+            where:{email:data.email}
         })
-
+        
         if(!user) throw {
             status: 400,
             message: "This Email doesn't exists!"
         }
-        console.log(data)
+       
         const valid = bcrypt.compare(data.password,user.password)
         if(!valid) throw{
             status: 401,
@@ -50,7 +50,7 @@ const login = async(data)=>{
             {expiresIn:'15m'}
         )
 
-        return accessToken
+        return {user,accessToken}
         
     } catch (error) {
         throw error
