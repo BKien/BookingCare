@@ -37,8 +37,8 @@ const login = async(data)=>{
             status: 400,
             message: "This Email doesn't exists!"
         }
-       
-        const valid = bcrypt.compare(data.password,user.password)
+        
+        const valid = await bcrypt.compare(data.password,user.password)
         if(!valid) throw{
             status: 401,
             message: "Wrong password!"
@@ -57,6 +57,12 @@ const login = async(data)=>{
     }
 }
 
+const getUserProfile = async(userId)=>{
+    const data = await db.User.findOne({
+        where: {id:userId}
+    })
+    return data
+}
 module.exports = {
-    createAnAccount,login
+    createAnAccount,login,getUserProfile
 }

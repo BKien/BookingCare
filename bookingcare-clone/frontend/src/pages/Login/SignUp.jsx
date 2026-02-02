@@ -33,7 +33,7 @@ const SignUp = () => {
             {/* LEFT */}
             <div className="signup-left">
             <div className="logo">
-                Filuick<span>Pay</span>
+                Booking<span>Care</span>
             </div>
 
             <h2>Create account</h2>
@@ -94,19 +94,18 @@ const SignUp = () => {
             </form>
 
             <p className="signin">
-                Already have an account? <a href="#">Sign in</a>
+                Already have an account? <a href="/login">Sign in</a>
             </p>
             </div>
-
+            
             {/* RIGHT */}
             <div className="signup-right">
             <h1>Welcome!</h1>
             <h2>
-                Join <span>Filuick pay</span> today
+                Join <span>Booking Care</span> today
             </h2>
             <p>
-                Manage your payments, track expenses, and grow your business
-                with ease.
+                Book medical appointments, manage your health records, and access trusted healthcare services with ease.
             </p>
             </div>
         </div>

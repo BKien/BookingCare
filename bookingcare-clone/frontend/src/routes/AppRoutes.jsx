@@ -6,11 +6,13 @@ import DoctorList from '../pages/Doctors/DoctorList';
 import DoctorDetail from '../pages/Doctors/DoctorDetail';
 import NotFound from '../pages/NotFound';
 import Booking from '../pages/Bookings/Booking';
+import UserProfile from '../pages/UserInfo/UserProfile';
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/user/me" element={<UserProfile/>}/>
       <Route path="/login" element={<Login />} />
       <Route path='/sign-up' element={<SignUp />}></Route>
       <Route path="/doctors" element={<DoctorList />} />

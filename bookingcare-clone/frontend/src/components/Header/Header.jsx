@@ -13,8 +13,7 @@ const Header = () => {
   const navigate = useNavigate()
 
   const handleDropDownClick = ()=>{
-      isOpen = !isOpen
-      setIsOpen(isOpen)
+      setIsOpen(!isOpen)
   }
 
   useEffect(()=>{
@@ -81,7 +80,7 @@ const Header = () => {
             ) : (
               <div className="user-avatar" onClick={handleDropDownClick} ref={avatarRef}>
                 <img src={bookingCareLogo}></img>
-                <DropDown isOpen={isOpen}></DropDown>
+                <DropDown isOpen={isOpen} user={user}></DropDown>
               </div>
             )}
         </div>

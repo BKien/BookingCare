@@ -23,10 +23,9 @@ const Login = () => {
             
             // lấy token
             // nếu thành công thì chuyển sang trang chủ
-            
+            console.log(res)
             const {accessToken,user} = res.data
-            localStorage.setItem("accessToken",accessToken)
-            login(user)
+            login(user,accessToken)
             navigate('/')
 
         } catch (error) {
@@ -39,7 +38,7 @@ const Login = () => {
         {/* LEFT */}
         <div className="login-left">
           <div className="logo">
-            Filuick<span>Pay</span>
+            Booking<span>Care</span>
           </div>
 
           <h2>Sign In</h2>
@@ -95,11 +94,10 @@ const Login = () => {
         <div className="login-right">
           <h1>Welcome back!</h1>
           <h2>
-            Please sign in to your <span>Filuick pay</span> account
+            Please sign in to your <span>Booking Care</span> account
           </h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur. Facilisi neque lectus turpis
-            id tincidunt eget.
+            Easily search for doctors, clinics, and specialties, then book appointments in just a few clicks.
           </p>
         </div>
       </div>
