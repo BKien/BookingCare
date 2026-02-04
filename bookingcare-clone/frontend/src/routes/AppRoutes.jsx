@@ -7,7 +7,8 @@ import DoctorDetail from '../pages/Doctors/DoctorDetail';
 import NotFound from '../pages/NotFound';
 import Booking from '../pages/Bookings/Booking';
 import UserProfile from '../pages/UserInfo/UserProfile';
-
+import VerifyEmail from '../pages/VerifyEmail/VerifyEmail';
+import CheckYourEmail from '../pages/CheckYourEmail/CheckYourEmail';
 const AppRoutes = () => {
   return (
     <Routes>
@@ -15,6 +16,8 @@ const AppRoutes = () => {
       <Route path="/user/me" element={<UserProfile/>}/>
       <Route path="/login" element={<Login />} />
       <Route path='/sign-up' element={<SignUp />}></Route>
+      <Route path='/verify-email' element={<VerifyEmail />}></Route>
+      <Route path='/check-email' element={<CheckYourEmail />}></Route>
       <Route path="/doctors" element={<DoctorList />} />
       <Route path="/doctors/:id" element={<DoctorDetail />} />
       <Route path="/booking/:id" element={<Booking />}/>

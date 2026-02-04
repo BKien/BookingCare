@@ -9,6 +9,7 @@ const DoctorDetail = () => {
 
     const {id} = useParams()
     const [doctorData,setDoctorData] = useState(null)
+    
     useEffect(()=>{
         const fetchDoctorInfo = async()=>{
             try {

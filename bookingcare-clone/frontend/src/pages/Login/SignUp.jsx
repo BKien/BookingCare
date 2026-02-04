@@ -1,14 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import "./SignUp.scss";
-
+import { Navigate,useNavigate } from "react-router-dom";
 const SignUp = () => {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const API_URL = import.meta.env.VITE_API_URL
-
+    const navigate = useNavigate()
     const handleSubmit = async(e) => {
         e.preventDefault(); // ❗ rất quan trọng
         const res = await axios.post(`${API_URL}/api/user/auth/sign-up`,{
@@ -25,6 +25,7 @@ const SignUp = () => {
             password,
             confirmPassword,
         });
+        navigate("/check-email")
     };
 
     return (

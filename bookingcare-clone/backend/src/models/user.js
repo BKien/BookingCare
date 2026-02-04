@@ -30,12 +30,32 @@ module.exports = (sequelize, DataTypes) => {
       role: {
         type: DataTypes.STRING,
         defaultValue: "PATIENT",
-      }
+      },
+      verifyExpiresAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        field: "verifyExpiresAt"
+      },
+      isVerified: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+        field: "isVerified"
+      },
+
+      verifyTokenHash: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        field: "verifyTokenHash"
+      },
     },
     {
       sequelize,
       modelName: 'User',
-      tableName: 'users'
+      tableName: 'users',
+      
+
+
     }
   );
 
