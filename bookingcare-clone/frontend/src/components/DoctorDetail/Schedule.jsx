@@ -1,13 +1,17 @@
-import { use, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatTime } from "../../services/doctorService";
 import "./Schedule.scss"
+import { AuthContext } from "../../context/AuthContext";
 const Schedule = ({scheduleDate,timeSlots,doctorId,schedule_id})=>{
     const [selectedSlot,setSelectedSlot] = useState(null)
     const navigate = useNavigate()
-
+    const {user} = useContext(AuthContext)
+   
     const handleClick = (slotId) =>{
-        navigate(`/booking/${doctorId}?slotId=${slotId}&scheduleId=${schedule_id}`)
+        navigate(`/booking/${doctorId}?slotId=${slotId}&scheduleId=${schedule_id}`,{
+          state: {user: user}
+        })
     }
     return (
     <div className="doctor-schedule">

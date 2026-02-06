@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Patient extends Model {
     static associate(models) {
         Patient.hasOne(models.Booking,{foreignKey:"patient_id"})
-      
+        Patient.belongsTo(models.User,{foreignKey:"user_id"})
     }
   }
 
@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     address:{
         type: DataTypes.STRING
+    },
+    user_id:{
+        type: DataTypes.BIGINT,
+        allowNull: true
     }
   },
   {

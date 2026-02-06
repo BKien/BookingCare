@@ -5,9 +5,12 @@ const saveBookingData = async(data)=>{
     //dùng transaction khi dữ liệu cần nhất quán
     // (khi thành công hết thì mới tạo không thì rollback)
     const t = await db.sequelize.transaction()
-    const isTimeSlotAvailable = await checkAndMarkTimeSlotUnavailable(data.time_slot_id)
-    if(!isTimeSlotAvailable) return "Not Available"
+    let result = false
     try {
+        const isTimeSlotAvailable = await checkAndMarkTimeSlotUnavailable(data.time_slot_id)
+        if(!isTimeSlotAvailable) throw {
+            message: "This Time Slots Is Not Available!"
+        }
         //tạo patient mới
         const newPatient = await db.Patient.create({
             name: data.name,
@@ -15,7 +18,8 @@ const saveBookingData = async(data)=>{
             number: data.number,
             email: data.email,
             birth: data.birth,
-            address: data.address
+            address: data.address,
+            user_id: data.user_id
         },{transaction:t})
 
         //tạo bản ghi booking mới
@@ -33,12 +37,15 @@ const saveBookingData = async(data)=>{
             booking_id: newBooking.id,
             status: "pending"
         },{transaction:t})
+        result = true
         await t.commit()
-        if(newPayment) return "Oke"
+        
     } catch (error) {
         await t.rollback()
-        console.log(error)
+        throw error
     }
+
+    return result
 }
 
 const checkAndMarkTimeSlotUnavailable = async(timeSlotId)=>{

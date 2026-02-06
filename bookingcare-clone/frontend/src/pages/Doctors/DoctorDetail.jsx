@@ -15,7 +15,7 @@ const DoctorDetail = () => {
             try {
                 const doctorInfo = await getDoctorInfo(id)
                 setDoctorData(doctorInfo.data)
-                console.log(doctorData)
+                
             } catch (error) {
                 console.log(error)
             }

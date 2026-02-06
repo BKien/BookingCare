@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'user_id',
           as: 'doctor'
       })
+      User.hasOne(models.Patient,{foreignKey:"user_id"})
     }
   }
 

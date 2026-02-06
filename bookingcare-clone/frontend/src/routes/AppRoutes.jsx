@@ -9,6 +9,7 @@ import Booking from '../pages/Bookings/Booking';
 import UserProfile from '../pages/UserInfo/UserProfile';
 import VerifyEmail from '../pages/VerifyEmail/VerifyEmail';
 import CheckYourEmail from '../pages/CheckYourEmail/CheckYourEmail';
+import BookingSucess from '../pages/Bookings/BookingSucess';
 const AppRoutes = () => {
   return (
     <Routes>
@@ -21,6 +22,7 @@ const AppRoutes = () => {
       <Route path="/doctors" element={<DoctorList />} />
       <Route path="/doctors/:id" element={<DoctorDetail />} />
       <Route path="/booking/:id" element={<Booking />}/>
+      <Route path="/booking-sucess" element={<BookingSucess />}/>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

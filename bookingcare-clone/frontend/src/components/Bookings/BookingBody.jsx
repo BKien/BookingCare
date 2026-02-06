@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import bookingService from "../../services/bookingService"
-const BookingBody = ({doctor_id,schedue_id,time_slot_id}) => {
-  
+import { useNavigate } from "react-router-dom";
+import userService from "../../services/userService";
+const BookingBody = ({doctor_id,schedule_id,time_slot_id,user_id}) => {
+  const navigate = useNavigate()
   const [bookingDataToServer,setBookingDataToServer] = useState({
       fullName: "",
       gender: "",
@@ -11,12 +13,12 @@ const BookingBody = ({doctor_id,schedue_id,time_slot_id}) => {
       birth: "",
       address: "",
       reason: "",
-      user_id: 1,
+      user_id: user_id,
       doctor_id: Number(doctor_id),
-      schedue_id: Number(schedue_id),
+      schedule_id: Number(schedule_id),
       time_slot_id: Number(time_slot_id)
   })
-
+  console.log({user_id:user_id})
   const handleOnchange = (e)=>{
     setBookingDataToServer({
       ...bookingDataToServer,
@@ -26,10 +28,22 @@ const BookingBody = ({doctor_id,schedue_id,time_slot_id}) => {
 
   const handleSubmit = async(e)=>{
     e.preventDefault()
-    const data = await bookingService.sendBookingDataToServer(bookingDataToServer)
-    console.log(data)
+    const isSucess = await bookingService.sendBookingDataToServer(bookingDataToServer)
+    console.log(isSucess)
+    if(isSucess) navigate('/booking-sucess')
   }
 
+  useEffect(()=>{
+    const getAndSetUserData = async(user_id)=>{
+      const data = await userService.getUserInfo(user_id)
+      setBookingDataToServer({
+        ...bookingDataToServer,
+        ...data
+      })
+    }
+    if(user_id)
+    getAndSetUserData(user_id)
+  },[])
 
   return (
     <form className="booking-form" onSubmit={handleSubmit}>

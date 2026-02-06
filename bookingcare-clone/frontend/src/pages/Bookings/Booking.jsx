@@ -4,10 +4,11 @@ import bookingService from "../../services/bookingService"
 import { formatTime } from "../../services/doctorService"
 import "./booking.scss"
 import { useEffect, useState } from "react"
-import { data, useParams, useSearchParams } from "react-router-dom"
+import { data, useLocation, useParams, useSearchParams } from "react-router-dom"
 
 
 const Booking = ()=>{
+    const {state} = useLocation()
     const {id} = useParams()
     const [searchParams] = useSearchParams()
     //lấy slot id để hiển thị đúng time-slot mà client chọn
@@ -33,7 +34,7 @@ const Booking = ()=>{
         console.log(error)
     }
     if(doctorBookingData == null) return "Loading..."
-    console.log(slotId)
+    
     return(
     <div className="booking-container">
       <BookingHeader
@@ -53,8 +54,9 @@ const Booking = ()=>{
 
       <Payment 
         doctor_id={id}
-        schedue_id={scheduleId}
+        schedule_id={scheduleId}
         time_slot_id={slotId}
+        user_id = {state.user.id}
       />
     </div>
     )

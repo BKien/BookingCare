@@ -21,4 +21,5 @@ api.interceptors.request.use(config=>{
     config.headers.Authorization = `Bear ${token}`
     return config
 })
+
 export default api
