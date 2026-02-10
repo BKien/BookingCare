@@ -1,0 +1,16 @@
+.layout{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 80px 1fr 60px;
+
+    .main {
+        display: grid;
+        grid-template-columns: 1fr min(1200px, 100%) 1fr;
+        padding-top: 32px;
+    }
+
+    .main > * {
+        grid-column: 2;
+    }
+
+}

@@ -1,0 +1,106 @@
+.schedule-container{
+  margin-top: 30px;
+  display: flex;
+  align-items: baseline;
+  gap: 30px;
+  .doctor-schedule {
+  margin-top: 20px;
+ 
+  .schedule-date {
+    font-weight: 600;
+    color: #0071ba;
+    margin-bottom: 10px;
+  }
+
+  .schedule-title {
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .time-slots {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 12px;
+
+      .time-slot {
+      min-width: 120px;
+      padding: 10px 12px;
+      border: none;
+      background: #f2f2f2;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 4px;
+
+      &:hover {
+        background: #ffd000;
+      }
+
+      &.active {
+        background: #ffd000;
+      }
+
+      &:disabled {
+        background: #e0e0e0;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+ 
+  
+
+  .schedule-note {
+    margin-top: 15px;
+    color: #666;
+  }
+  }
+
+
+   .right-side{
+      width: 320px;
+      line-height: 1.4;
+      .location{
+          .location-lable{
+            font-weight: 800;
+            color: #666;
+            font-size: 18px;
+          }
+          .address{
+            font-size: 15px;
+          }
+          padding-bottom: 10px;
+          border-bottom: 0.5px solid rgba(0,0,0,0.2);
+      }
+      
+      .price-container{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .price-lable{
+            font-weight: 800;
+            color: #666;
+            font-size: 18px;
+          }
+          .price{
+            font-size: 15px;
+          }
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border-bottom: 0.5px solid rgba(0,0,0,0.2);
+      }
+
+      .insurance-container{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .insurance-lable{
+            font-weight: 800;
+            color: #666;
+            font-size: 18px;
+          }
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border-bottom: 0.5px solid rgba(0,0,0,0.2);
+      }
+    }
+}

@@ -14,7 +14,8 @@ const Schedule = ({scheduleDate,timeSlots,doctorId,schedule_id})=>{
         })
     }
     return (
-    <div className="doctor-schedule">
+    <div className="schedule-container">
+        <div className="doctor-schedule">
       {/* DATE */}
       <div className="schedule-date">
         <span>Thứ 2 - 12/1</span>
@@ -26,7 +27,7 @@ const Schedule = ({scheduleDate,timeSlots,doctorId,schedule_id})=>{
       </div>
 
       {/* TIME SLOTS */}
-      
+      <div className="time-slots">
         {timeSlots.map((slot) => (
           <button
             key={slot.id}
@@ -40,11 +41,32 @@ const Schedule = ({scheduleDate,timeSlots,doctorId,schedule_id})=>{
             {formatTime(slot.start_time)} - {formatTime(slot.end_time)}
           </button>
         ))}
-
+      </div>
+        
       {/* NOTE */}
       <div className="schedule-note">
         Chọn <span>🖱</span> và đặt (Phí đặt lịch 0đ)
       </div>
+    </div>
+
+    <div className="right-side">
+        <div className="location">
+            <div className="location-lable">Địa Chỉ Khám:</div>
+            <div className="address">Trung tâm sức khỏe Nam Giới Men's Health 
+            7B/31 Thành Thái, phường Diên Hồng, TP. HCM</div>
+        </div>
+
+        <div className="price-container">
+            <div className="price-lable">Giá Khám:</div>
+            <div className="price">300.000</div>
+        </div>
+
+        <div className="insurance-container">
+            <div className="insurance-lable">Loại Bảo Hiểm Áp Dụng</div>
+        </div>
+    </div>
+
+
     </div>
   );
 }

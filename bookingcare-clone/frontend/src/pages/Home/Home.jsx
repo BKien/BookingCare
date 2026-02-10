@@ -34,13 +34,11 @@ const Home = () => {
 
     return (
         <>
-            <Header></Header>
             <SearchSection></SearchSection>
             <ServiceSection listOfServices={dataForServicesSection}></ServiceSection>
             <SpecialistSection data={dataForSpecialistSection}></SpecialistSection>
             <MedicalFacility data={dataForMedicalFacilitySection}></MedicalFacility>
             <DoctorSection list={dataForDoctorSection}></DoctorSection>
-            <Footer></Footer>
         </>
     )
 }

@@ -23,6 +23,7 @@
                 flex: 0 0 322px;
                 justify-content: center;
                 align-items: center;
+                cursor: pointer;
                 .img{
                     object-fit: contain;
                     border-color: gray;
@@ -30,6 +31,7 @@
                     width: 250px;
                     height: 150px;
                     border-radius: 50%;
+                    
                 }
                 .name{
                     margin-top: 20px;

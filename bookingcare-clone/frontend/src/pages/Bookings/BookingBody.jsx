@@ -3,6 +3,8 @@ import axios from "axios";
 import bookingService from "../../services/bookingService"
 import { useNavigate } from "react-router-dom";
 import userService from "../../services/userService";
+import './BookingBody.scss'
+
 const BookingBody = ({doctor_id,schedule_id,time_slot_id,user_id}) => {
   const navigate = useNavigate()
   const [bookingDataToServer,setBookingDataToServer] = useState({
@@ -49,10 +51,10 @@ const BookingBody = ({doctor_id,schedule_id,time_slot_id,user_id}) => {
     <form className="booking-form" onSubmit={handleSubmit}>
       {/* Giá khám */}
       <div className="price-box">
-        <label>
+        <div className="label">
           <input type="radio" checked readOnly />
-          Giá khám
-        </label>
+          <div>Giá khám</div>
+        </div>
         <div className="price">500.000đ</div>
       </div>
 

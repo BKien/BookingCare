@@ -1,0 +1,26 @@
+.doctor-info-container{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+    .doctor-img{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+
+    .doctor-infomation{
+        word-break: break-word;
+        width: 500px;
+        overflow-wrap: break-word;
+        .name{
+            font-size: 30px;
+            font-weight: 800px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .description{
+            color: #6b7280; /* xám nhạt */
+            line-height: 1.4;
+        }
+    }
+}

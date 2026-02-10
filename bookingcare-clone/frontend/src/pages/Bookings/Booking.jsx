@@ -1,11 +1,10 @@
-import Payment from "../../components/Bookings/BookingBody"
-import BookingHeader from "../../components/Bookings/BookingHeader"
+import Payment from "./BookingBody"
+import BookingHeader from "./BookingHeader"
 import bookingService from "../../services/bookingService"
 import { formatTime } from "../../services/doctorService"
 import "./booking.scss"
 import { useEffect, useState } from "react"
 import { data, useLocation, useParams, useSearchParams } from "react-router-dom"
-
 
 const Booking = ()=>{
     const {state} = useLocation()
@@ -56,7 +55,7 @@ const Booking = ()=>{
         doctor_id={id}
         schedule_id={scheduleId}
         time_slot_id={slotId}
-        user_id = {state.user.id}
+        user_id = {state.user?.id}
       />
     </div>
     )
