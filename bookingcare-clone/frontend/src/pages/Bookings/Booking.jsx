@@ -3,17 +3,21 @@ import BookingHeader from "./BookingHeader"
 import bookingService from "../../services/bookingService"
 import doctorService from "../../services/doctorService"
 import "./booking.scss"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { data, useLocation, useParams, useSearchParams } from "react-router-dom"
-
+import Spinner from "../../components/Spinner/Spinner"
+import { LoadingContext } from "../../context/LoadingContext"
 const Booking = ()=>{
     const {state} = useLocation()
     const {id} = useParams()
+    const {loading,setLoading} = useContext(LoadingContext)
+    console.log({loading:loading});
+    
     const [searchParams] = useSearchParams()
     //lấy slot id để hiển thị đúng time-slot mà client chọn
     const slotId = searchParams.get("slotId")
     const scheduleId = searchParams.get("scheduleId")
-    const [doctorBookingData,setDoctorBookingData] = useState(null)
+    const [doctorBookingData,setDoctorBookingData] = useState(null) 
 
     try {
 
@@ -36,6 +40,7 @@ const Booking = ()=>{
     
     return(
     <div className="booking-container">
+      
       <BookingHeader
         doctor={{
           name: "PGS. TS. BSCKII. TTUT Vũ Văn Hòe",
@@ -57,6 +62,8 @@ const Booking = ()=>{
         time_slot_id={slotId}
         user_id = {state.user?.id}
       />
+
+      {loading ? <><Spinner></Spinner></>: <></>}
     </div>
     )
 }

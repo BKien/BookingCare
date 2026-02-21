@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import bookingService from "../../services/bookingService"
 import { useNavigate } from "react-router-dom";
 import userService from "../../services/userService";
+import { LoadingContext } from "../../context/LoadingContext";
 import './BookingBody.scss'
 
 const BookingBody = ({doctor_id,schedule_id,time_slot_id,user_id}) => {
+  const {setLoading} = useContext(LoadingContext)
   const navigate = useNavigate()
   const [bookingDataToServer,setBookingDataToServer] = useState({
       fullName: "",
@@ -30,12 +32,14 @@ const BookingBody = ({doctor_id,schedule_id,time_slot_id,user_id}) => {
 
   const handleSubmit = async(e)=>{
     e.preventDefault()
+    setLoading(true)
     const response = await bookingService.sendBookingDataToServer(bookingDataToServer)
     console.log(response);
     
     if(response.data.result){
       const res = await bookingService.sendBookingEmail(response.data.bookingId)
       navigate('/booking-sucess')
+      setLoading(true)
     }
     else navigate('/booking-error')
   }

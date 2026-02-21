@@ -1,9 +1,11 @@
 import './Spinner.scss'
 const Spinner = ()=>{
     return(
-        <>
-            Spinning...
-        </>
+       <div className='spin-container'>
+            <div className='spinner'>
+                
+            </div>
+       </div>
     )
 }
 

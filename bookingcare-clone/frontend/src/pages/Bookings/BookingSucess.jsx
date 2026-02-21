@@ -1,7 +1,7 @@
 const BookingSucess = ()=>{
     return(
         <>
-            Booking Sucess!
+            Booking Sucess!<a href="/">Go to HomePage</a>
         </>
     )
 }
