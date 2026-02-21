@@ -3,7 +3,7 @@ import {Link, useLocation} from 'react-router-dom'
 import DoctorInfo from "./DoctorInfo";
 import Schedule from "./Schedule";
 import { useParams } from "react-router-dom"
-import { getDoctorInfo,formatTime } from "../../services/doctorService"
+import doctorService from "../../services/doctorService"
 import { useState,useEffect } from "react";
 import MainLayout from "../../Layouts/MainLayout";
 import Comments from "./Comments";
@@ -18,7 +18,7 @@ const DoctorDetail = () => {
     useEffect(()=>{
         const fetchDoctorInfo = async()=>{
             try {
-                const doctorInfo = await getDoctorInfo(id)
+                const doctorInfo = await doctorService.getDoctorInfo(id)
                 setDoctorData(doctorInfo.data)
                 
             } catch (error) {

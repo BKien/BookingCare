@@ -10,8 +10,8 @@ const createDoctor = (req,res) =>{
 
 const listOfDoctor = async(req,res) =>{
     try {
-        console.log("oke")
-        const doctorList = await doctorService.listOfDoctor()
+        const id = req.params.id
+        const doctorList = await doctorService.listOfDoctor(id)
         res.status(201).json(doctorList)
     } catch (error) {
         console.log(error)
@@ -34,6 +34,11 @@ const getAllInfo = async(req,res) =>{
     }
 }
 
+const getSpecialtyData = async(req,res)=>{
+    const data = await doctorService.getSpecialtyData()
+    console.log(data)
+    res.send(data)
+}
 module.exports = {
-    createDoctor,listOfDoctor,getAllInfo
+    createDoctor,listOfDoctor,getAllInfo,getSpecialtyData
 }

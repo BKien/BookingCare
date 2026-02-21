@@ -1,26 +1,13 @@
 import React, { useEffect,useState } from "react";
-import {Link} from 'react-router-dom'
-import {getDoctorList} from '../../services/doctorService'
+import {Link, useLoaderData, useParams} from 'react-router-dom'
+
+const API_URL = import.meta.env.VITE_API_URL
 const DoctorList = () => {
-    const [doctors, setDoctors] = useState([])
+    const doctors = useLoaderData()
     const [error, setError] = useState(true)
     const [loading, setLoading] = useState(null)
-
-    useEffect(()=>{
-        const fetchDoctors = async()=>{
-            try {
-                const doctorList = await getDoctorList()
-                setDoctors(doctorList.listOfDoctors)
-            } catch (error) {
-                setError("Can not load the list of doctors")
-                console.log(error)
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        fetchDoctors()
-    },[])
+    const {orthopedics_id} = useParams()
+    
 
     return (
         <table border="1" cellPadding="8" cellSpacing="0">
@@ -35,13 +22,13 @@ const DoctorList = () => {
         </thead>
 
         <tbody>
-            {doctors.map((doctor) => (
+            {doctors?.listOfDoctors?.map((doctor) => (
             <tr key={doctor.id}>
                 <td>{doctor.id}</td>
                 <td>{doctor.description}</td>
                 <td>${doctor.price}</td>
                 <td>{doctor.user_id}</td>
-                <td><a href={`/doctors/${doctor.id}`}>Detail</a></td>
+                <td><Link to={`${doctor.id}`}>Detail</Link></td>
             </tr>
             ))}
         </tbody>

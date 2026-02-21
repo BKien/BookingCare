@@ -5,14 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import './BreadCrumb.scss'
 
 const BreadCrumb = ({ BreadCrumbLink }) => {
-  const crumbs = useMatches().filter(crumb=>crumb.handle?.breadcrumb)
-
+  const crumbs = useMatches()
+  console.log(crumbs);
+  const filter = crumbs.filter((crumb)=>crumb.data)
+  console.log(filter);
+  
   return (
     <nav className='breadcrumbs'>
       {crumbs.map((crumb,index)=>( 
-        
         <>
-           <Link to={crumb.pathname}>{crumb.handle.breadcrumb}</Link>
+           <Link to={crumb.pathname}>{}</Link>
             {index != crumbs.length - 1 ? (
                 <span className='icon'>
                   <FontAwesomeIcon icon={faChevronRight} size="sm" /> 

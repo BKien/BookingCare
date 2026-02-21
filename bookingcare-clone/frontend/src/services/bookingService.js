@@ -12,9 +12,19 @@ const sendBookingDataToServer = async(data)=>{
     return response
 }
 
+const sendBookingEmail = async(booking_id)=>{
+    const res = await axios.post(`${API_URL}/api/bookings/sendBookingEmail`,{booking_id})
+    return res
+}
+const getSpecialtyPageData = async()=>{
+    const data = axios.get(`${API_URL}/api/medical-services/specialist-examination`)
+    return data 
+}
 
 export default {
     fetchDoctorBookingInfo,
-    sendBookingDataToServer
+    sendBookingDataToServer,
+    getSpecialtyPageData,
+    sendBookingEmail
 }
 

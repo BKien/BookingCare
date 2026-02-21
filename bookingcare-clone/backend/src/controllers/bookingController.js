@@ -12,4 +12,16 @@ const saveBookingData = async(req,res)=>{
     }
 }
 
-module.exports = {saveBookingData}
+const sendBookingEmail = async(req,res)=>{
+    try {
+       
+        
+        const data = await bookingService.sendBookingEmail(req.body.booking_id)
+      
+        return res.send(data)
+    } catch (error) {
+        
+    }
+}
+
+module.exports = {saveBookingData,sendBookingEmail}

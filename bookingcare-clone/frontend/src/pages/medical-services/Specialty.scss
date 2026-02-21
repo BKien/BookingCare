@@ -1,0 +1,11 @@
+.specialty-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    img{
+        width: 150px;
+    }
+    div{
+        cursor: pointer;
+    }
+}

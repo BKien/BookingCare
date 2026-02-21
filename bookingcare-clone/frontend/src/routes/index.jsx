@@ -12,42 +12,82 @@ import UserProfile from '../pages/UserInfo/UserProfile';
 import VerifyEmail from '../pages/VerifyEmail/VerifyEmail';
 import CheckYourEmail from '../pages/CheckYourEmail/CheckYourEmail';
 import BookingSucess from '../pages/Bookings/BookingSucess';
+import BookingError from "../pages/Status/BookingError";
+import Specialty from "../pages/medical-services/Specialty";
+import Status from "../Layouts/StatusLayout";
+import loader from "./loader";
 //tạo router và gắn layout cho các trang 
 export const router = createBrowserRouter([
   {
     element: <MainLayout />,
-    handle: { breadcrumb: "Trang Chủ" },
+    handle: {breadcrumb: (data)=> {
+                  if(data)
+                  return data.data[0].name
+                }},
     children: [
       {
         index: true,
         element: <Home />,
       },
+      /// MEDICAL SEVICES 
       {
-        path: "doctors",
-        handle: { breadcrumb: "Khoa Xương Khớp" },
-        children: [
+        path: 'medical-services',
+        handle: {breadcrumb: (data)=> {
+                  if(data)
+                  return data.data[0].name
+                }},
+        children:[
           {
-            index: true,
-            element: <DoctorList />,
+            path: 'speacialty-examination',
+            handle: {breadcrumb: (data)=> {
+                 if(data)
+                  return "Khám Chuyên Khoa"
+                }},
+            children:[
+              {
+                index: true,
+                element: <Specialty></Specialty>,
+                loader: loader.SpecialtyLoader,
+              },
+              {
+                path:':specialty_id',
+                handle: {breadcrumb: (data)=> {
+                  if(data)
+                  return data.data[0].name
+                }},
+                
+                children:[
+                  {
+                    path: '',
+                    index: true,
+                    element: <DoctorList></DoctorList>,
+                    loader: loader.SpecialtyDetailLoader
+                  },
+                  {
+                    path:':id',
+                    handle: {breadcrumb: (data)=> {
+                      if(data)
+                      return data.data[0].name
+                    }},
+                    element: <DoctorDetail></DoctorDetail>
+                  }
+                ]
+              },
+            ]
           },
-          {
-            path: ":id",
-            element: <DoctorDetail />,
-            handle: { breadcrumb: "Tên Bác Sĩ" },
-          },
-        ],
+          
+        ]
+       
       },
+
       {
         path: "verify-email",
         element: <VerifyEmail />,
       },
+      
       {
-        path: "booking/:id",
-        element: <Booking />,
-      },
-      {
-        path: "booking-sucess",
-        element: <BookingSucess />,
+        path: "booking-error",
+        element: <BookingError></BookingError>
       },
       {
         path: "check-email",
@@ -70,4 +110,17 @@ export const router = createBrowserRouter([
       { path: "sign-up", element: <SignUp /> },
     ],
   },
+  {
+    element: <Status></Status>,
+    children: [
+      {
+        path: "booking/:id",
+        element: <Booking />,
+      },
+      {
+        path: "booking-sucess",
+        element: <BookingSucess />,
+      },
+    ]
+  }
 ])

@@ -1,6 +1,6 @@
 import { use, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { formatTime } from "../../services/doctorService";
+import doctorService from "../../services/doctorService";
 import "./Schedule.scss"
 import { AuthContext } from "../../context/AuthContext";
 const Schedule = ({scheduleDate,timeSlots,doctorId,schedule_id})=>{
@@ -38,7 +38,7 @@ const Schedule = ({scheduleDate,timeSlots,doctorId,schedule_id})=>{
             onClick={()=>{handleClick(slot.id)}}
             disabled={!slot.is_available}
           >
-            {formatTime(slot.start_time)} - {formatTime(slot.end_time)}
+            {doctorService.formatTime(slot.start_time)} - {doctorService.formatTime(slot.end_time)}
           </button>
         ))}
       </div>

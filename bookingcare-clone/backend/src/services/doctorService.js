@@ -26,8 +26,16 @@ const createDoctor = async(data) => {
     }
 }
 
-const listOfDoctor = async() =>{
-    const listOfDoctors = await db.Doctor.findAll()
+const listOfDoctor = async(specialty_id) =>{
+    
+    const listOfDoctors = await db.Doctor.findAll({
+        include:{
+            model: db.Specialties,
+            where:{
+                id: specialty_id
+            }
+        }
+    })
     return {listOfDoctors}
 }
 
@@ -58,6 +66,14 @@ const getAllInfo = async(id)=>{
     
 }
 
+const getSpecialtyData = async()=>{
+    try {
+        const data = await db.Specialties.findAll()
+        return {data}
+    } catch (error) {
+        
+    }
+}
 module.exports = {
-    createDoctor,listOfDoctor,getAllInfo
+    createDoctor,listOfDoctor,getAllInfo,getSpecialtyData
 }

@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       Doctor.hasOne(models.Booking,{foreignKey:"doctor_id"})
+      Doctor.belongsToMany(models.Specialties,{
+        foreignKey: 'doctor_id',
+        through: models.DoctorSpecialty,
+        otherKey: 'specialties_id'
+      }
+      )
     }
   }
 

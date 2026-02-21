@@ -1,6 +1,7 @@
 const { where } = require('sequelize')
 const db = require('../models/index')
-
+const {Resend} = require('resend')
+const resend = new Resend(process.env.RESEND_KEY)
 const saveBookingData = async(data)=>{
     //dùng transaction khi dữ liệu cần nhất quán
     // (khi thành công hết thì mới tạo không thì rollback)
@@ -37,15 +38,16 @@ const saveBookingData = async(data)=>{
             booking_id: newBooking.id,
             status: "pending"
         },{transaction:t})
+        const bookingId = newBooking.id
         result = true
         await t.commit()
-        
+        return {result,bookingId}
     } catch (error) {
         await t.rollback()
         throw error
     }
 
-    return result
+    
 }
 
 const checkAndMarkTimeSlotUnavailable = async(timeSlotId)=>{
@@ -59,4 +61,23 @@ const checkAndMarkTimeSlotUnavailable = async(timeSlotId)=>{
     }
     else false
 }
-module.exports = {saveBookingData}
+
+const sendBookingEmail = async(bookingId)=>{
+    try {
+        const bookingData = await  db.Booking.findOne({
+            where: {id: bookingId}
+        })
+        
+        const respsonse = await resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: 'thekien2006@gmail.com',
+            subject: 'Third Email',
+            html: `<div>${bookingData}</div>`
+        });
+        return respsonse
+    } catch (error) {
+        
+    }
+}
+
+module.exports = {saveBookingData,sendBookingEmail}

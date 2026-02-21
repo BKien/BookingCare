@@ -23,7 +23,7 @@ const DoctorList = ({list}) =>{
     }
 
     const navigateToDetail = (doctorId)=>{
-        navigate(`/doctors/${doctorId}`)
+        navigate(`/medical-services/speacialty-examination/orthopedics/${doctorId}`)
     }
     if(!list) return "loading..."
     return(

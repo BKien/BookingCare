@@ -6,11 +6,21 @@ module.exports = (sequelize, DataTypes) => {
   class Specialties extends Model {
     static associate(models) {
       // User.hasMany(models.Booking, { foreignKey: 'userId' });
+      Specialties.belongsToMany(models.Doctor,{
+        foreignKey: 'specialties_id',
+        otherKey: 'doctor_id',
+        through: models.DoctorSpecialty
+      })
     }
   }
 
   Specialties.init(
-    {
+    {   
+        id: {
+          type: DataTypes.BIGINT,
+          autoIncrement: true,
+          primaryKey: true
+        },
         description: {
         type: DataTypes.TEXT,
         allowNull: false

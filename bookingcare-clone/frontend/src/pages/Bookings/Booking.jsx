@@ -1,7 +1,7 @@
 import Payment from "./BookingBody"
 import BookingHeader from "./BookingHeader"
 import bookingService from "../../services/bookingService"
-import { formatTime } from "../../services/doctorService"
+import doctorService from "../../services/doctorService"
 import "./booking.scss"
 import { useEffect, useState } from "react"
 import { data, useLocation, useParams, useSearchParams } from "react-router-dom"
@@ -42,8 +42,8 @@ const Booking = ()=>{
           avatar: "/doctor.jpg",
         }}
 
-        timeText= {`${formatTime(doctorBookingData.data.time_slots.find((slot)=>{return slot.id.toString() === slotId}).start_time)}
-        -  ${formatTime(doctorBookingData.data.time_slots.find((slot)=>{return slot.id.toString() === slotId}).end_time)}`}
+        timeText= {`${doctorService.formatTime(doctorBookingData.data.time_slots.find((slot)=>{return slot.id.toString() === slotId}).start_time)}
+        -  ${doctorService.formatTime(doctorBookingData.data.time_slots.find((slot)=>{return slot.id.toString() === slotId}).end_time)}`}
 
         clinic={{
           name: "Phòng khám Spinetech Clinic",

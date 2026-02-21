@@ -2,8 +2,8 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL
 
-const getDoctorList = async () =>{
-    const doctorList = await axios.get(`${API_URL}/api/medical-services/specialist-examination/listOfDoctors`)
+const getDoctorList = async (id) =>{
+    const doctorList = await axios.get(`${API_URL}/api/medical-services/specialist-examination/listOfDoctors/${id}`)
     return doctorList.data
 }
 
@@ -14,5 +14,5 @@ const getDoctorInfo = async(id) =>{
 
 const formatTime = (time) => time.slice(0, 5)
 
-export {getDoctorList,getDoctorInfo,formatTime}
+export default {getDoctorList,getDoctorInfo,formatTime}
 

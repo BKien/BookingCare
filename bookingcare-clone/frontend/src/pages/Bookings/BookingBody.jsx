@@ -30,9 +30,14 @@ const BookingBody = ({doctor_id,schedule_id,time_slot_id,user_id}) => {
 
   const handleSubmit = async(e)=>{
     e.preventDefault()
-    const isSucess = await bookingService.sendBookingDataToServer(bookingDataToServer)
-    console.log(isSucess)
-    if(isSucess) navigate('/booking-sucess')
+    const response = await bookingService.sendBookingDataToServer(bookingDataToServer)
+    console.log(response);
+    
+    if(response.data.result){
+      const res = await bookingService.sendBookingEmail(response.data.bookingId)
+      navigate('/booking-sucess')
+    }
+    else navigate('/booking-error')
   }
 
   useEffect(()=>{
