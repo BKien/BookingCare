@@ -29,6 +29,6 @@ const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, async () => {
   console.log(`Backend running on http://localhost:${PORT}`);
-  // await connectDatabase(); // 👈 KẾT NỐI MYSQL
+  await connectDatabase(); // 👈 KẾT NỐI MYSQL
   
 });
