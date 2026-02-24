@@ -43,7 +43,7 @@ const getAllInfo = async(id)=>{
     try {
 
         let doctor_info = await db.Doctor.findOne({
-        where: {id:id}
+            where: {id:id}
         })
         
         doctor_info = doctor_info.dataValues

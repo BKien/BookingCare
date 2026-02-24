@@ -1,6 +1,7 @@
 import "./List.scss"
 import img from "../../assets/images/bookingcarelogo.svg"
 import leftArrow from"../../assets/images/left-arrow.svg"
+import { Link } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
 const List = ({list})=>{
     //api của server
@@ -25,13 +26,13 @@ const List = ({list})=>{
        
     return(
         // map danh sách list để tạo list cho Featured Seaction
-        <div className="scroll-container">
+        <div className="scroll-container"> 
             <div className="list-container" ref={scrollClassName}>
                 {list.map((item) => (
-                    <div className="item-container" key={item.id}>
+                    <Link className="item-container" key={item.id} to={item.url}>
                         <img src={`${API_URL}${item.img}`} className="img" />
                         <div className="name">{item.name}</div>
-                    </div>
+                    </Link>
                 ))}
             </div>
             <img className="left-button" onClick={handleLeftButton} src={leftArrow} ></img>
