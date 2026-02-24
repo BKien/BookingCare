@@ -9,5 +9,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <LoadingProvider>
       <RouterProvider router={router} />
     </LoadingProvider>
+    
   </AuthProvider>
 );
