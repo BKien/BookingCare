@@ -22,6 +22,15 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
-    dialect: 'mysql'
+    port: process.env.DB_PORT, // <<< THÊM DÒNG NÀY
+    dialect: 'mysql',
+    /* Cấu hình SSL bên dưới là bắt buộc để chạy với Aiven */
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false // Giúp bỏ qua việc kiểm tra file ca.pem trên Render
+      }
+    },
+    timezone: "+07:00", // Tùy chọn: Chỉnh múi giờ Việt Nam
   }
 };
