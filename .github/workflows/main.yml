@@ -1,0 +1,40 @@
+name: Production Deployment
+
+on:
+  push:
+    branches: [ main ] # Chỉ chạy khi code được merge vào main
+
+jobs:
+  test_and_migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      # BƯỚC KIỂM TRA: Đảm bảo code không lỗi trước khi làm gì DB
+      - name: Run Linting & Tests
+        run: |
+          npm run lint
+          # npm test (Nếu bạn có viết test)
+
+      # BƯỚC QUAN TRỌNG: Chạy migration
+      - name: Run Database Migrations
+        run: npx sequelize-cli db:migrate --env production
+        env:
+          # Các biến môi trường lấy từ GitHub Secrets
+          DATABASE_URL: ${{ secrets.DATABASE_URL }} 
+
+  deploy:
+    needs: test_and_migrate # CHỈ DEPLOY KHI TEST VÀ MIGRATE XONG
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render Deploy
+        # Gửi một yêu cầu đến Render bảo nó: "Mọi thứ ổn rồi, lấy code về chạy đi"
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
