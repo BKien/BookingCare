@@ -22,5 +22,12 @@ const SpecialtyDetailLoader = async({params})=>{
           
      }
 }
-
-export default {SpecialtyLoader,SpecialtyDetailLoader}
+const ClinicDetailLoader = async({params})=>{
+     try {
+          const data = await  doctorService.getDoctorByClinicId(params.id)
+          return data
+     } catch (error) {
+          
+     }
+}
+export default {SpecialtyLoader,SpecialtyDetailLoader,ClinicDetailLoader}

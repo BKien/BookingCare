@@ -18,6 +18,15 @@ const listOfDoctor = async(req,res) =>{
     }
 }
 
+const getListOfDoctorByClinicId = async(req,res)=>{
+    try {
+        const id = req.params.id
+        const doctorList = await doctorService.listOfDoctorByClinicId(id)
+        res.status(201).json(doctorList)
+    } catch (error) {
+        console.log(error)
+    }
+}
 const getAllInfo = async(req,res) =>{
     try {
         const doctor_id = req.params.id
@@ -40,5 +49,5 @@ const getSpecialtyData = async(req,res)=>{
     res.send(data)
 }
 module.exports = {
-    createDoctor,listOfDoctor,getAllInfo,getSpecialtyData
+    createDoctor,listOfDoctor,getAllInfo,getSpecialtyData,getListOfDoctorByClinicId
 }

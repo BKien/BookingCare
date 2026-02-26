@@ -1,6 +1,7 @@
 const e = require('express')
 const db = require('../models/index')
 const { where } = require('sequelize')
+const clinic = require('../models/clinic')
 
 const createDoctor = async(data) => {
     const t = await db.sequelize.transaction() 
@@ -39,6 +40,14 @@ const listOfDoctor = async(specialty_id) =>{
     return {listOfDoctors}
 }
 
+const listOfDoctorByClinicId = async(clinic_id)=>{
+    const listOfDoctors = await db.Doctor.findAll({
+        where:{
+            clinic_id: clinic_id
+        }
+    })
+    return {listOfDoctors}
+}
 const getAllInfo = async(id)=>{
     try {
 
@@ -75,5 +84,5 @@ const getSpecialtyData = async()=>{
     }
 }
 module.exports = {
-    createDoctor,listOfDoctor,getAllInfo,getSpecialtyData
+    createDoctor,listOfDoctor,getAllInfo,getSpecialtyData,listOfDoctorByClinicId
 }

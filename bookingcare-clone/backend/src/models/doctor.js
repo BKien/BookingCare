@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'specialties_id'
       }
       )
+      Doctor.belongsTo(models.Clinic,{
+        foreignKey:'clinic_id'
+      })
     }
   }
 

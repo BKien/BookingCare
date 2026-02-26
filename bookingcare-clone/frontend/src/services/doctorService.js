@@ -12,7 +12,11 @@ const getDoctorInfo = async(id) =>{
     return doctorData
 } 
 
+const getDoctorByClinicId = async(clinic_id)=>{
+    const doctorList = await axios.get(`${API_URL}/api/medical-services/specialist-examination/listOfDoctors/${clinic_id}`)
+    return doctorList.data
+}
 const formatTime = (time) => time.slice(0, 5)
 
-export default {getDoctorList,getDoctorInfo,formatTime}
+export default {getDoctorList,getDoctorInfo,formatTime,getDoctorByClinicId}
 

@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   class Clinic extends Model {
     static associate(models) {
       // User.hasMany(models.Booking, { foreignKey: 'userId' });
+      Clinic.hasMany(models.Doctor,{
+        foreignKey: 'clinic_id'
+      })
     }
   }
 
@@ -31,6 +34,9 @@ module.exports = (sequelize, DataTypes) => {
         img:{
           type: DataTypes.TEXT,
           allowNull: false
+        },
+        url:{
+          type: DataTypes.STRING
         }
     },
     {

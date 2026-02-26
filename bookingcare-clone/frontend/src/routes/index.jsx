@@ -16,6 +16,7 @@ import BookingError from "../pages/Status/BookingError";
 import Specialty from "../pages/medical-services/Specialty";
 import Status from "../Layouts/StatusLayout";
 import loader from "./loader";
+import Clinics from "../pages/Clinics/Clinics";
 //tạo router và gắn layout cho các trang 
 export const router = createBrowserRouter([
   {
@@ -101,6 +102,11 @@ export const router = createBrowserRouter([
         path: "*",
         element: <NotFound />,
       },
+      ,{
+        path: "clinics/:id",
+        element: <Clinics></Clinics>,
+        loader: loader.ClinicDetailLoader
+      }
     ],
   },
   {
