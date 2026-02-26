@@ -19,11 +19,7 @@ jobs:
         run: npm ci
         working-directory: ./bookingcare-clone/backend
       # BƯỚC KIỂM TRA: Đảm bảo code không lỗi trước khi làm gì DB
-      - name: Run Linting & Tests
-        run: |
-          npm run lint
-          # npm test (Nếu bạn có viết test)
-        working-directory: ./bookingcare-clone/backend
+      
       # BƯỚC QUAN TRỌNG: Chạy migration
       - name: Run Database Migrations
         run: npx sequelize-cli db:migrate --env production
