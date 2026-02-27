@@ -1,10 +1,9 @@
 'use strict';
 
-import { BOOLEAN, DATE, Sequelize, STRING } from "sequelize";
+const { BOOLEAN, DATE, Sequelize, STRING } = require('sequelize');
 
-
-export default{
-  async up(queryInterface,sequelize){
+module.exports = {
+  async up(queryInterface, sequelize) {
     await queryInterface.createTable("patients",{
         id:{
           type: Sequelize.BIGINT,
@@ -52,7 +51,7 @@ export default{
         },
     })
   },
-  async down(queryInterface){
-    await queryInterface.dropTable("patients")
+  async down(queryInterface) {
+    await queryInterface.dropTable("patients");
   }
-}
+};
