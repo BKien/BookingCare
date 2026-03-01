@@ -17,6 +17,7 @@ import Specialty from "../pages/medical-services/Specialty";
 import Status from "../Layouts/StatusLayout";
 import loader from "./loader";
 import Clinics from "../pages/Clinics/Clinics";
+import SearchPage from "../pages/Search/SearchPage";
 //tạo router và gắn layout cho các trang 
 export const router = createBrowserRouter([
   {
@@ -106,6 +107,13 @@ export const router = createBrowserRouter([
         path: "clinics/:id",
         element: <Clinics></Clinics>,
         loader: loader.ClinicDetailLoader
+      },
+
+      ///SEARCH PAGE
+      {
+        path: "search",
+        element: <SearchPage></SearchPage>,
+        loader: loader.SearchPageLoader
       }
     ],
   },

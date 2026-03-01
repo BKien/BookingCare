@@ -1,6 +1,7 @@
 
 import { useParams } from "react-router-dom"
 import doctorService from "../services/doctorService"
+import searchService from "../services/searchService"
 import axios from "axios"
 const API_URL = import.meta.env.VITE_API_URL
 const SpecialtyLoader = async()=>{
@@ -30,4 +31,21 @@ const ClinicDetailLoader = async({params})=>{
           
      }
 }
-export default {SpecialtyLoader,SpecialtyDetailLoader,ClinicDetailLoader}
+
+const SearchPageLoader = async({request})=>{
+     try {
+          const url = new URL(request.url)
+          const keyWord = url.searchParams.get("keyWord")
+          const data = await searchService.sendKeyToServer(keyWord)
+          console.log(data);
+          
+          return data
+          
+     } catch (error) {
+          console.log(error);
+          
+     }
+}
+
+
+export default {SpecialtyLoader,SpecialtyDetailLoader,ClinicDetailLoader,SearchPageLoader}
